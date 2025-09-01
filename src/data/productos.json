@@ -1,0 +1,523 @@
+[
+  {
+    "id": 1,
+    "nombre": "Lámpara LED Moderna Circular",
+    "precio": "35.00",
+    "imagen": "/src/ProductosImagen/IMG-20250806-WA0091.jpg",
+    "descripcion": "Lámpara LED de diseño moderno para sala o comedor. Bajo consumo energético.",
+    "categoria": "Lámparas",
+    "caracteristicas": {
+      "potencia": "24W",
+      "voltaje": "220V",
+      "temperatura_color": "10000K (Luz Blanca)",
+      "flujo_luminoso": "5000 lúmenes",
+      "vida_util": "50,000 horas",
+      "material": "Aluminio y acrílico",
+      "dimensiones": "40cm de diámetro x 5cm de altura",
+      "instalacion": "Base E27 Estandar",
+      "garantia": "2 años"
+    }
+  },
+  {
+    "id": 2,
+    "nombre": "Fuente de poder 12V 10A",
+    "precio": "45.00",
+    "imagen": "/src/ProductosImagen/IMG-20250806-WA0089.jpg",
+    "descripcion": "Fuente de poder 12V 10A con armazon de aluminio",
+    "categoria": "Fuentes de poder",
+    "caracteristicas": {
+      "potencia": "10A",
+      "voltaje": "220V a 12V",
+      "material": "Policarbonato y aluminio",
+      "dimensiones": "20cm x 10cm x 5cm",
+      "instalacion": "Depende del proyecto",
+      "control": "Manual",
+      "garantia": "1 año"
+    }
+  },
+  {
+    "id": 3,
+    "nombre": "Lámpara LED Moderna Circular",
+    "precio": "20.00",
+    "imagen": "/src/ProductosImagen/IMG-20250806-WA0088.jpg",
+    "descripcion": "Estilo industrial moderno. Ideal para cocinas y comedores.",
+    "categoria": "Lámparas",
+    "caracteristicas": {
+      "potencia": "18W LED",
+      "voltaje": "220V",
+      "temperatura_color": "2700K (Luz Blanca)",
+      "flujo_luminoso": "1620 lúmenes",
+      "vida_util": "25,000 horas",
+      "material": "Metal blanco mate",
+      "dimensiones": "25cm de diámetro x 30cm de altura",
+      "instalacion": "Empotrable en techo falso",
+      "estilo": "Industrial Moderno",
+      "garantia": "1 año"
+    }
+  },
+  {
+    "id": 4,
+    "nombre": "Detector de Billetes Falsos",
+    "precio": "50.00",
+    "imagen": "/src/ProductosImagen/IMG-20250806-WA0024.jpg",
+    "descripcion": "Detector de billetes falsos para evitar fraude en transacciones.",
+    "categoria": "Detector de billetes falsos",
+    "caracteristicas": {
+      "Luces": "Luz Ultravioleta y Blanca",
+      "voltaje": "220V",
+      "material": "Plastico",
+      "dimensiones": "10cm x 10cm x 10cm",
+      "instalacion": "Depende del proyecto",
+      "garantia": "1 año"
+    }
+  },
+  {
+    "id": 5,
+    "nombre": "Foco LED RGB con Parlante",
+    "precio": "30.00",
+    "imagen": "/src/ProductosImagen/IMG-20250806-WA0027.jpg",
+    "descripcion": "Foco LED RGB con parlante para ambientes.",
+    "categoria": "Focos LED RGB",
+    "caracteristicas": {
+      "potencia": "9W",
+      "voltaje": "220V",
+      "colores": "RGB",
+      "vida_util": "30,000 horas",
+      "material": "Plastico",
+      "dimensiones": "10cm de altura x 10cm de base",
+      "instalacion": "Depende del proyecto",
+      "control": "Base E27 Estandar",
+      "garantia": "1 año"
+    }
+  },
+  {
+    "id": 6,
+    "nombre": "Foco LED 5W Calido",
+    "precio": "5.00",
+    "imagen": "/src/ProductosImagen/IMG-20250806-WA0030.jpg",
+    "descripcion": "Foco de luz calida.",
+    "categoria": "Focos LED",
+    "caracteristicas": {
+      "potencia": "5W",
+      "voltaje": "220V",
+      "temperatura_color": "3000K (Luz cálida)",
+      "flujo_luminoso": "700 lúmenes",
+      "vida_util": "35,000 horas",
+      "material": "Vidrio",
+      "dimensiones": "8cm de diámetro",
+      "instalacion": "Base E27 Estandar",
+      "garantia": "1 año"
+    }
+  },
+  {
+    "id": 7,
+    "nombre": "Tira LED RGB Inteligente",
+    "precio": "75.00",
+    "imagen": "/src/ProductosImagen/IMG-20250806-WA0032.jpg",
+    "descripcion": "Tira LED RGB con control por aplicación móvil. 5 metros de longitud.",
+    "categoria": "Tiras LED",
+    "caracteristicas": {
+      "potencia": "72W (5 metros)",
+      "voltaje": "12V DC",
+      "longitud": "5 metros",
+      "leds_por_metro": "60 LEDs/metro",
+      "vida_util": "50,000 horas",
+      "material": "Silicona flexible",
+      "colores": "16 de colores RGB",
+      "control": "Controlador Manual Incluido",
+      "incluye": "Fuente de poder y controlador",
+      "garantia": "1 año"
+    }
+  },
+  {
+    "id": 8,
+    "nombre": "Lámpara LED Moderna con Sensor de Movimiento",
+    "precio": "22.00",
+    "imagen": "/src/ProductosImagen/IMG-20250806-WA0058.jpg",
+    "descripcion": "Reflector LED de alta potencia para exteriores con Sensor de Movimiento. Ideal para interiores y fachadas.",
+    "categoria": "Lámparas",
+    "caracteristicas": {
+      "potencia": "15W",
+      "voltaje": "220V",
+      "temperatura_color": "6500K (Luz fría)",
+      "flujo_luminoso": "10,000 lúmenes",
+      "vida_util": "50,000 horas",
+      "material": "Aluminio y acrílico",
+      "dimensiones": "35cm x 28cm x 5cm",
+      "instalacion": "Empotrable en techo falso",
+      "uso": "Uso interiores",
+      "garantia": "1 año"
+    }
+  },
+   {
+    "id": 9,
+    "nombre": "Kit Solar con Radio y Linterna",
+    "precio": "90.00",
+    "imagen": "/src/ProductosImagen/IMG-20250806-WA0033.jpg",
+    "descripcion": "Kit Solar con Radio y Linterna, ideal para emergencias y actividades al aire libre.",
+    "categoria": "Linternas",
+    "caracteristicas": {
+      "temperatura_color": "6500K (Luz fría)",
+      "vida_util": "50,000 horas",
+      "material": "Plastico",
+      "incluye": "Panel solar, Radio, Bluetooth, Reflector, Cargador de Telefonos y 3 focos de 3w",
+      "dimensiones": "35cm x 28cm x 5cm",
+      "instalacion": "Depende del proyecto",
+      "uso": "Uso de interiores y exteriores",
+      "garantia": "1 año"
+    }
+  },
+   {
+    "id": 10,
+    "nombre": "Cinta LED NEON ",
+    "precio": "20.00",
+    "imagen": "/src/ProductosImagen/IMG-20250806-WA0021.jpg",
+    "descripcion": "Cinta LED NEON 5 metros, luz continua, flexible ideal para letreros.",
+    "categoria": "Tiras LED",
+    "caracteristicas": {
+      "colores": "Rojo, Azul, Verde, Blanco, RGB",
+      "vida_util": "50,000 horas",
+      "material": "Plastico",
+      "dimensiones": "5 metros",
+      "instalacion": "Depende del proyecto",
+      "uso": "Uso de interiores y exteriores",
+      "garantia": "1 año"
+    }
+  },
+   {
+    "id": 11,
+    "nombre": "Manguera LED RGB",
+    "precio": "10.00 x metro",
+    "imagen": "/src/ProductosImagen/IMG-20250806-WA0016.jpg",
+    "descripcion": "Manguera LED RGB, luz continua, flexible ideal para letreros y Proyectos.",
+    "categoria": "Tiras LED",
+    "caracteristicas": {
+      "color": "RGB",
+      "vida_util": "50,000 horas",
+      "material": "Plastico",
+      "dimensiones": "100 metros x Rollo",
+      "instalacion": "Depende del proyecto",
+      "uso": "Uso de interiores y exteriores",
+      "garantia": "1 año"
+    }
+  },
+   {
+    "id": 12,
+    "nombre": "Manguera LED",
+    "precio": "7.00 x metro",
+    "imagen": "/src/ProductosImagen/IMG-20250806-WA0017.jpg",
+    "descripcion": "Manguera LED, luz continua, flexible ideal para letreros y Proyectos.",
+    "categoria": "Tiras LED",
+    "caracteristicas": {
+      "color": "Blanca y Cálida, los demas colores a pedido",
+      "vida_util": "50,000 horas",
+      "material": "Plastico",
+      "dimensiones": "100 metros x Rollo",
+      "instalacion": "Depende del proyecto",
+      "uso": "Uso de interiores y exteriores",
+      "garantia": "1 año"
+    }
+  },
+   {
+    "id": 13,
+    "nombre": "Manguera LED Navideña",
+    "precio": "3.50 x metro",
+    "imagen": "/src/ProductosImagen/IMG-20250806-WA0019.jpg",
+    "descripcion": "Manguera LED Navideña, luz continua, flexible ideal para Proyectos y Figuras navideñas.",
+    "categoria": "Tiras LED",
+    "caracteristicas": {
+      "color": "Blanca, Azul, Roja, Verde, Calida, Multicolor",
+      "vida_util": "50,000 horas",
+      "material": "Plastico",
+      "dimensiones": "100 metros x Rollo",
+      "instalacion": "Depende del proyecto",
+      "uso": "Uso de interiores y exteriores",
+      "garantia": "1 año"
+    }
+  },
+   {
+    "id": 14,
+    "nombre": "Kit Solar con Radio y Linterna",
+    "precio": "50.00",
+    "imagen": "/src/ProductosImagen/IMG-20250806-WA0038.jpg",
+    "descripcion": "Kit Solar con Radio y Linterna, ideal para emergencias y actividades al aire libre.",
+    "categoria": "Linternas",
+    "caracteristicas": {
+      "incluye": "Panel solar, Radio, Bluetooth, Reflector, Cargador de Telefonos y 3 focos de 3w.",
+      "temperatura_color": "6500K (Luz fría)",
+      "vida_util": "50,000 horas",
+      "material": "Plastico",
+      "dimensiones": "35cm x 28cm x 5cm",
+      "instalacion": "Depende del proyecto",
+      "uso": "Uso de interiores y exteriores",
+      "garantia": "1 año"
+    }
+  },
+   {
+    "id": 15,
+    "nombre": "Estaño para Soldar",
+    "precio": "80.00",
+    "imagen": "/src/ProductosImagen/IMG-20250806-WA0041.jpg",
+    "descripcion": "Estaño para soldar 1mm x 500g, ideal para proyectos electrónicos y eléctricos.",
+    "categoria": "Accesorios",
+    "caracteristicas": {
+      "dimensiones": "1mm x 500g",
+      "instalacion": "Depende del proyecto",
+      "uso": "Proyectos electrónicos y eléctricos",
+      "garantia": "No aplica" 
+      }
+  },
+   {
+    "id": 16,
+    "nombre": "Modulos LED ",
+    "precio": "2.50 x Unidad",
+    "imagen": "/src/ProductosImagen/IMG-20250806-WA0042.jpg",
+    "descripcion": "Modulos LED ideal para letreros y Proyectos.",
+    "categoria": "Tiras LED",
+    "caracteristicas": {
+      "voltaje": "12V",
+      "color": "Blanca",
+      "vida_util": "50,000 horas",
+      "material": "Plastico",
+      "dimensiones": "5cm x 2cm",
+      "uso": "Depende del proyecto",
+      "garantia": "No aplica" 
+      }
+  },
+   {
+    "id": 17,
+    "nombre": "Luminaria LED",
+    "precio": "Consultar",
+    "imagen": "/src/ProductosImagen/IMG-20250806-WA0043.jpg",
+    "descripcion": "Luminaria LED ideal para Espacios grandes.",
+    "categoria": "Lámparas",
+    "caracteristicas": {
+      "voltaje": "220V",
+      "color": "Blanca, Cálida, Neutra",
+      "vida_util": "50,000 horas",
+      "material": "Plastico",
+      "dimensiones": "Varía según el modelo",
+      "instalacion": "Empotrable en techo falso",
+      "uso": "Depende del proyecto",
+      "garantia": "No aplica" 
+      }
+  },
+   {
+    "id": 18,
+    "nombre": "Extension de 16 puertos ",
+    "precio": "50.00",
+    "imagen": "/src/ProductosImagen/IMG-20250806-WA0060.jpg",
+    "descripcion": "Extension de 16 puertos con interruptor individual y proteccion contra sobrecargas.",
+    "categoria": "Accesorios",
+    "caracteristicas": {
+      "dimensiones": "20cm x 10cm x 5cm",
+      "instalacion": "Enchufe a 220V",
+      "uso": "Depende del proyecto",
+      "garantia": "No aplica" 
+      }
+  },
+  {
+    "id": 19,
+    "nombre": "Foco LED 45W Mariposa",
+    "precio": "30.00",
+    "imagen": "/src/ProductosImagen/IMG-20250806-WA0047.jpg",
+    "descripcion": "Foco de luz Blanca.",
+    "categoria": "Focos LED",
+    "caracteristicas": {
+      "potencia": "45W",
+      "voltaje": "220V",
+      "temperatura_color": "6000K (Luz Blanca)",
+      "flujo_luminoso": "700 lúmenes",
+      "vida_util": "35,000 horas",
+      "material": "Plastico",
+      "dimensiones": "20cm de diámetro",
+      "instalacion": "Base E27 Estandar",
+      "garantia": "1 año"
+    }
+  },
+  {
+    "id": 20,
+    "nombre": "Foco LED Recargable con Panel Solar",
+    "precio": "30.00",
+    "imagen": "/src/ProductosImagen/IMG-20250806-WA0065.jpg",
+    "descripcion": "Foco de luz Blanca Recargable con Panel Solar.",
+    "categoria": "Focos LED Recargables",
+    "caracteristicas": {
+      "potencia": "45W",
+      "voltaje": "5v USB",
+      "temperatura_color": "6000K (Luz Blanca)",
+      "flujo_luminoso": "700 lúmenes",
+      "vida_util": "35,000 horas",
+      "material": "Plastico",
+      "dimensiones": "20cm de diámetro",
+      "instalacion": "Depende del proyecto",
+      "garantia": "1 año"
+    }
+  },
+  {
+    "id": 21,
+    "nombre": "Foco LED Recargable",
+    "precio": "20.00",
+    "imagen": "/src/ProductosImagen/IMG-20250806-WA0066.jpg",
+    "descripcion": "Foco de luz Blanca Recargable.",
+    "categoria": "Focos LED Recargables",
+    "caracteristicas": {
+      "potencia": "45W",
+      "voltaje": "5v USB",
+      "temperatura_color": "6000K (Luz Blanca)",
+      "flujo_luminoso": "700 lúmenes",
+      "vida_util": "35,000 horas",
+      "material": "Plastico",
+      "dimensiones": "20cm de diámetro",
+      "instalacion": "Depende del proyecto",
+      "garantia": "1 año"
+    }
+  },
+  {
+    "id": 22,
+    "nombre": "Foco LED 36W Mariposa",
+    "precio": "20.00",
+    "imagen": "/src/ProductosImagen/IMG-20250806-WA0049.jpg",
+    "descripcion": "Foco de luz Blanca con Hojas para un mejor alcance de luz.",
+    "categoria": "Focos LED",
+    "caracteristicas": {
+      "potencia": "36W",
+      "voltaje": "220V",
+      "colores": "Blanca y Cálida",
+      "vida_util": "35,000 horas",
+      "material": "Plastico",
+      "dimensiones": "20cm de diámetro",
+      "instalacion": "Base E27 Estandar",
+      "garantia": "1 año"
+    }
+  },
+  {
+    "id": 23,
+    "nombre": "Reflectores LED",
+    "precio": "Consultar",
+    "imagen": "/src/ProductosImagen/IMG-20250806-WA0053.jpg",
+    "descripcion": "Reflectores LED de alta potencia para exteriores. Ideal para interiores y fachadas.",
+    "categoria": "Reflectores LED",
+    "caracteristicas": {
+      "potencia": "Depende del modelo",
+      "voltaje": "12V - 24V",
+      "colores": "Blanco",
+      "vida_util": "35,000 horas",
+      "material": "Policarbonato y aluminio",
+      "dimensiones": "Depende del modelo",
+      "instalacion": "Depende del proyecto",
+      "garantia": "1 año"
+    }
+  },
+  {
+    "id": 24,
+    "nombre": "Foco LED 3W",
+    "precio": "5.00",
+    "imagen": "/src/ProductosImagen/IMG-20250806-WA0067.jpg",
+    "descripcion": "Foco de luz BLanca.",
+    "categoria": "Focos LED",
+    "caracteristicas": {
+      "potencia": "3W",
+      "voltaje": "220V",
+      "temperatura_color": "7000K (Luz Blanca)",
+      "flujo_luminoso": "220 lúmenes",
+      "vida_util": "35,000 horas",
+      "material": "Vidrio",
+      "dimensiones": "8cm de diámetro",
+      "instalacion": "Base E27 Estandar",
+      "garantia": "1 año"
+    }
+  },
+  {
+    "id": 25,
+    "nombre": "Foco LED RGB",
+    "precio": "10.00",
+    "imagen": "/src/ProductosImagen/IMG-20250806-WA0070.jpg",
+    "descripcion": "Foco de luz RGB ideal para ambientes.",
+    "categoria": "Focos LED RGB",
+    "caracteristicas": {
+      "potencia": "10W",
+      "voltaje": "220V",
+      "colores": "RGB",
+      "vida_util": "35,000 horas",
+      "material": "Plastico",
+      "dimensiones": "8cm de diámetro",
+      "instalacion": "Base E27 Estandar",
+      "garantia": "1 año"
+    }
+  },
+  {
+    "id": 26,
+    "nombre": "Foco LED Dimmer",
+    "precio": "15.00",
+    "imagen": "/src/ProductosImagen/IMG-20250806-WA0073.jpg",
+    "descripcion": "Foco de luz BLanca variable con 3 niveles de iluminacion.",
+    "categoria": "Focos LED",
+    "caracteristicas": {
+      "potencia": "9W",
+      "voltaje": "220V",
+      "temperatura_color": "7000K (Luz Blanca)",
+      "flujo_luminoso": "800 lúmenes",
+      "vida_util": "25,000 horas",
+      "material": "Plastico",
+      "dimensiones": "8cm de diámetro",
+      "instalacion": "Base E27 Estandar",
+      "garantia": "1 año"
+    }
+  },
+  {
+    "id": 27,
+    "nombre": "Foco LED 9w Calida",
+    "precio": "7.00",
+    "imagen": "/src/ProductosImagen/IMG-20250806-WA0074.jpg",
+    "descripcion": "Foco de luz calida.",
+    "categoria": "Focos LED",
+    "caracteristicas": {
+      "potencia": "7W",
+      "voltaje": "220V",
+      "temperatura_color": "3000K (Luz cálida)",
+      "flujo_luminoso": "450 lúmenes",
+      "vida_util": "35,000 horas",
+      "material": "Vidrio",
+      "dimensiones": "8cm de diámetro",
+      "instalacion": "Base E27 Estandar",
+      "garantia": "1 año"
+    }
+  },
+  {
+    "id": 28,
+    "nombre": "Lampara de Emergencia LED Recargable",
+    "precio": "50.00",
+    "imagen": "/src/ProductosImagen/IMG-20250806-WA0054.jpg",
+    "descripcion": "Lampara de Emergencia LED Recargable",
+    "categoria": "Lamparas de Emergencia",
+    "caracteristicas": {
+      "potencia": "30W",
+      "voltaje": "220V",
+      "temperatura_color": "6000K (Luz Blanca)",
+      "vida_util": "35,000 horas",
+      "material": "Plastico",
+      "dimensiones": "25cm de altura x 15cm de base",
+      "instalacion": "Enchufe a 220V",
+      "garantia": "1 año"
+    }
+  },
+  {
+    "id": 29,
+    "nombre": "Lampara de Emergencia LED Recargable",
+    "precio": "60.00",
+    "imagen": "/src/ProductosImagen/IMG-20250806-WA0055.jpg",
+    "descripcion": "Lampara de Emergencia LED Recargable con forma de ojos",
+    "categoria": "Lamparas de Emergencia",
+    "caracteristicas": {
+      "potencia": "30W",
+      "voltaje": "220V",
+      "temperatura_color": "6000K (Luz Blanca)",
+      "vida_util": "35,000 horas",
+      "material": "Plastico",
+      "dimensiones": "25cm de altura x 15cm de base",
+      "instalacion": "Enchufe a 220V",
+      "garantia": "1 año"
+    }
+  }
+]
