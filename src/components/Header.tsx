@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Zap, Menu, X } from 'lucide-react';
+import CartIcon from './CartIcon';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -20,46 +21,51 @@ const Header: React.FC = () => {
           </Link>
           
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8">
-            <Link 
-              to="/"
-              className={`font-medium transition-colors ${
-                isActive('/') 
-                  ? 'text-blue-600 border-b-2 border-blue-600 pb-1' 
-                  : 'text-gray-700 hover:text-blue-600'
-              }`}
-            >
-              Inicio
-            </Link>
-            <Link 
-              to="/catalogo"
-              className={`font-medium transition-colors ${
-                isActive('/catalogo') 
-                  ? 'text-blue-600 border-b-2 border-blue-600 pb-1' 
-                  : 'text-gray-700 hover:text-blue-600'
-              }`}
-            >
-              Catálogo
-            </Link>
-            <Link 
-              to="/contacto"
-              className={`font-medium transition-colors ${
-                isActive('/contacto') 
-                  ? 'text-blue-600 border-b-2 border-blue-600 pb-1' 
-                  : 'text-gray-700 hover:text-blue-600'
-              }`}
-            >
-              Contáctanos
-            </Link>
-          </nav>
+          <div className="hidden md:flex items-center space-x-8">
+            <nav className="flex space-x-8">
+              <Link 
+                to="/"
+                className={`font-medium transition-colors ${
+                  isActive('/') 
+                    ? 'text-blue-600 border-b-2 border-blue-600 pb-1' 
+                    : 'text-gray-700 hover:text-blue-600'
+                }`}
+              >
+                Inicio
+              </Link>
+              <Link 
+                to="/catalogo"
+                className={`font-medium transition-colors ${
+                  isActive('/catalogo') 
+                    ? 'text-blue-600 border-b-2 border-blue-600 pb-1' 
+                    : 'text-gray-700 hover:text-blue-600'
+                }`}
+              >
+                Catálogo
+              </Link>
+              <Link 
+                to="/contacto"
+                className={`font-medium transition-colors ${
+                  isActive('/contacto') 
+                    ? 'text-blue-600 border-b-2 border-blue-600 pb-1' 
+                    : 'text-gray-700 hover:text-blue-600'
+                }`}
+              >
+                Contáctanos
+              </Link>
+            </nav>
+            <CartIcon />
+          </div>
 
-          {/* Mobile menu button */}
-          <button 
-            className="md:hidden"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
+          {/* Mobile menu button and cart */}
+          <div className="md:hidden flex items-center space-x-4">
+            <CartIcon />
+            <button 
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}

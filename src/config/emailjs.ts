@@ -5,9 +5,9 @@
 // 3. Obtener tu User ID
 
 export const emailjsConfig = {
-  serviceId: 'YOUR_SERVICE_ID', // Reemplaza con Service ID
-  templateId: 'YOUR_TEMPLATE_ID', // Reemplaza con Template ID
-  userId: 'YOUR_USER_ID', // Reemplaza con User ID
+  serviceId: 'service_o2fdy25', // Reemplaza con Service ID
+  templateId: 'template_hvyhria', // Reemplaza con Template ID
+  userId: 'rNG6L74zYr2JY2MWO', // Reemplaza con User ID
 };
 
 // Ejemplo de configuración:

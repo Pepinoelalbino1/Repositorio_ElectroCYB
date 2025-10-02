@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, MessageCircle, Star, Shield, Truck, Clock } from 'lucide-react';
 import productos from '../data/productos.json';
 import { formatPriceWithSymbol } from '../config/currency';
+import AddToCartButton from '../components/AddToCartButton';
 
 const ProductoDetalle: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -84,13 +85,19 @@ const ProductoDetalle: React.FC = () => {
                 </div>
               </div>
               
-              <button 
-                onClick={contactarWhatsApp}
-                className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-6 rounded-lg transition-colors duration-300 flex items-center justify-center space-x-2 mb-4"
-              >
-                <MessageCircle className="h-5 w-5" />
-                <span>Consultar Disponibilidad por WhatsApp</span>
-              </button>
+              <div className="space-y-3">
+                <AddToCartButton 
+                  product={producto}
+                  className="w-full"
+                />
+                <button 
+                  onClick={contactarWhatsApp}
+                  className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300 flex items-center justify-center space-x-2"
+                >
+                  <MessageCircle className="h-5 w-5" />
+                  <span>Consultar Disponibilidad por WhatsApp</span>
+                </button>
+              </div>
 
               <div className="grid grid-cols-3 gap-4 text-center text-sm">
                 <div className="flex flex-col items-center">

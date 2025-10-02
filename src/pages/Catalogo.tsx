@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { MessageCircle, Filter, Grid, List } from 'lucide-react';
 import productos from '../data/productos.json';
 import { formatPriceWithSymbol } from '../config/currency';
+import AddToCartButton from '../components/AddToCartButton';
 
 const Catalogo: React.FC = () => {
   const [filtroCategoria, setFiltroCategoria] = useState('Todas');
@@ -14,7 +15,7 @@ const Catalogo: React.FC = () => {
     ? productos 
     : productos.filter(p => p.categoria === filtroCategoria);
 
-  const contactarWhatsApp = (producto: any) => {
+  const contactarWhatsApp = (producto: { nombre: string; precio: string }) => {
     const mensaje = `Hola! Estoy interesado/a en el producto: ${producto.nombre} - Precio: ${formatPriceWithSymbol(producto.precio)}. ¿Podrían darme más información?`;
     const numeroWhatsApp = "51940310317"; 
     const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
@@ -100,6 +101,11 @@ const Catalogo: React.FC = () => {
                 <p className="text-gray-600 mb-4">{producto.descripcion}</p>
                 
                 <div className="space-y-2">
+                  <AddToCartButton 
+                    product={producto}
+                    variant="small"
+                    className="w-full"
+                  />
                   <Link 
                     to={`/catalogo/${producto.id}`}
                     className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300 flex items-center justify-center space-x-2"
