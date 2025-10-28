@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Zap, Menu, X } from 'lucide-react';
 import CartIcon from './CartIcon';
+import UserIndicator from './UserIndicator';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -54,11 +55,13 @@ const Header: React.FC = () => {
                 Contáctanos
               </Link>
             </nav>
+            <UserIndicator />
             <CartIcon />
           </div>
 
           {/* Mobile menu button and cart */}
           <div className="md:hidden flex items-center space-x-4">
+            <UserIndicator />
             <CartIcon />
             <button 
               onClick={() => setIsMenuOpen(!isMenuOpen)}

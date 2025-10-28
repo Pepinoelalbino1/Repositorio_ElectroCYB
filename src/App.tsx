@@ -6,11 +6,17 @@ import FloatingButtons from './components/FloatingButtons';
 import CartDrawer from './components/CartDrawer';
 import Toast from './components/Toast';
 import { CartProvider, useCart } from './context/CartContext';
+import { OrderProvider } from './context/OrderContext';
+import { AuthProvider } from './context/AuthContext';
 import Home from './pages/Home';
 import Catalogo from './pages/Catalogo';
 import ProductoDetalle from './pages/ProductoDetalle';
 import Contacto from './pages/Contacto';
 import Checkout from './pages/Checkout';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import TrackingPage from './pages/TrackingPage';
+import AdminPanel from './pages/AdminPanel';
 
 const AppContent: React.FC = () => {
   const { state, hideToast } = useCart();
@@ -26,6 +32,10 @@ const AppContent: React.FC = () => {
             <Route path="/catalogo/:id" element={<ProductoDetalle />} />
             <Route path="/contacto" element={<Contacto />} />
             <Route path="/checkout" element={<Checkout />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/tracking/:orderId" element={<TrackingPage />} />
+            <Route path="/admin" element={<AdminPanel />} />
           </Routes>
         </main>
         <Footer />
@@ -44,9 +54,13 @@ const AppContent: React.FC = () => {
 
 function App() {
   return (
-    <CartProvider>
-      <AppContent />
-    </CartProvider>
+    <AuthProvider>
+      <CartProvider>
+        <OrderProvider>
+          <AppContent />
+        </OrderProvider>
+      </CartProvider>
+    </AuthProvider>
   );
 }
 

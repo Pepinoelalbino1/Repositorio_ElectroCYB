@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useReducer, ReactNode } from 'react';
+import React, { createContext, useContext, useReducer, ReactNode, useEffect } from 'react';
 
 // Tipos
 export interface CartItem {
@@ -156,6 +156,30 @@ const CartContext = createContext<{
 // Provider
 export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [state, dispatch] = useReducer(cartReducer, initialState);
+
+  // Cargar carrito desde localStorage al inicializar
+  useEffect(() => {
+    const savedCart = localStorage.getItem('cart');
+    if (savedCart) {
+      try {
+        const cartItems = JSON.parse(savedCart);
+        cartItems.forEach((item: CartItem) => {
+          dispatch({ type: 'ADD_ITEM', payload: item });
+        });
+      } catch {
+        localStorage.removeItem('cart');
+      }
+    }
+  }, []);
+
+  // Guardar carrito en localStorage cuando cambie
+  useEffect(() => {
+    if (state.items.length > 0) {
+      localStorage.setItem('cart', JSON.stringify(state.items));
+    } else {
+      localStorage.removeItem('cart');
+    }
+  }, [state.items]);
 
   const addItem = (item: Omit<CartItem, 'cantidad'>) => {
     dispatch({ type: 'ADD_ITEM', payload: item });

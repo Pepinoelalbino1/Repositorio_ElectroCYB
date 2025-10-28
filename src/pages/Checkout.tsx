@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowLeft, CreditCard, Smartphone, CheckCircle, AlertCircle, User, Mail, Phone, MapPin, Package, Store, Truck } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import { ArrowLeft, CreditCard, Smartphone, CheckCircle, AlertCircle, User, Mail, Phone, MapPin, Package, Store, Truck, Lock } from 'lucide-react';
 import { useCart } from '../context/CartContext';
+import { useOrder } from '../context/OrderContext';
+import { useAuth } from '../context/AuthContext';
 import { formatPriceWithSymbol } from '../config/currency';
 import YapeModal from '../components/YapeModal';
 
 const Checkout: React.FC = () => {
   const { state, getTotalPrice, clearCart } = useCart();
+  const { createOrder } = useOrder();
+  const { state: authState } = useAuth();
+  const navigate = useNavigate();
   const [paymentMethod, setPaymentMethod] = useState<'yape' | 'transferencia' | null>(null);
   const [deliveryMethod, setDeliveryMethod] = useState<'domicilio' | 'tienda' | null>(null);
   const [showYapeModal, setShowYapeModal] = useState(false);
@@ -14,9 +19,9 @@ const Checkout: React.FC = () => {
   const [orderComplete, setOrderComplete] = useState(false);
 
   const [formData, setFormData] = useState({
-    nombre: '',
-    email: '',
-    telefono: '',
+    nombre: authState.user?.nombre || '',
+    email: authState.user?.email || '',
+    telefono: authState.user?.telefono || '',
     direccion: '',
     distrito: '',
     referencia: '',
@@ -24,6 +29,43 @@ const Checkout: React.FC = () => {
   });
 
   const [errors, setErrors] = useState<{[key: string]: string}>({});
+
+  // Verificar autenticación
+  if (!authState.isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="max-w-md mx-auto text-center">
+          <div className="bg-white rounded-lg shadow-lg p-8">
+            <Lock className="h-16 w-16 text-gray-300 mx-auto mb-4" />
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">Acceso Requerido</h2>
+            <p className="text-gray-600 mb-6">
+              Necesitas iniciar sesión para continuar con tu compra. Tu carrito se mantendrá guardado.
+            </p>
+            <div className="space-y-3">
+              <Link 
+                to="/login"
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors block"
+              >
+                Iniciar Sesión
+              </Link>
+              <Link 
+                to="/register"
+                className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition-colors block"
+              >
+                Crear Cuenta
+              </Link>
+              <Link 
+                to="/catalogo"
+                className="w-full bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium py-3 px-6 rounded-lg transition-colors block"
+              >
+                Seguir Comprando
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -113,6 +155,25 @@ const Checkout: React.FC = () => {
 
     // Simular procesamiento de orden
     setTimeout(() => {
+      // Crear el pedido en el sistema de tracking
+      const orderData = {
+        items: state.items,
+        total: getTotalPrice(),
+        cliente: {
+          nombre: formData.nombre,
+          email: formData.email,
+          telefono: formData.telefono,
+          direccion: deliveryMethod === 'domicilio' ? formData.direccion : undefined,
+          distrito: deliveryMethod === 'domicilio' ? formData.distrito : undefined,
+          referencia: deliveryMethod === 'domicilio' ? formData.referencia : undefined,
+        },
+        metodoEntrega: deliveryMethod!,
+        metodoPago: paymentMethod!,
+        comentarios: formData.comentarios,
+      };
+
+      createOrder(orderData);
+      
       setIsProcessing(false);
       setOrderComplete(true);
       clearCart();
@@ -128,6 +189,25 @@ const Checkout: React.FC = () => {
 
     // Simular procesamiento de orden
     setTimeout(() => {
+      // Crear el pedido en el sistema de tracking
+      const orderData = {
+        items: state.items,
+        total: getTotalPrice(),
+        cliente: {
+          nombre: formData.nombre,
+          email: formData.email,
+          telefono: formData.telefono,
+          direccion: deliveryMethod === 'domicilio' ? formData.direccion : undefined,
+          distrito: deliveryMethod === 'domicilio' ? formData.distrito : undefined,
+          referencia: deliveryMethod === 'domicilio' ? formData.referencia : undefined,
+        },
+        metodoEntrega: deliveryMethod!,
+        metodoPago: paymentMethod!,
+        comentarios: formData.comentarios,
+      };
+
+      createOrder(orderData);
+      
       setIsProcessing(false);
       setOrderComplete(true);
       clearCart();
@@ -167,6 +247,14 @@ const Checkout: React.FC = () => {
               }
             </p>
             <div className="space-y-3">
+              <button
+                onClick={() => {
+                  navigate('/admin');
+                }}
+                className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition-colors"
+              >
+                Ir al Panel de Administración
+              </button>
               <Link 
                 to="/catalogo"
                 className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition-colors block"
@@ -371,6 +459,7 @@ const Checkout: React.FC = () => {
                         errors.nombre ? 'border-red-300' : 'border-gray-300'
                       }`}
                       placeholder="Tu nombre completo"
+                      readOnly
                     />
                   </div>
                   {errors.nombre && (
@@ -394,6 +483,7 @@ const Checkout: React.FC = () => {
                         errors.email ? 'border-red-300' : 'border-gray-300'
                       }`}
                       placeholder="tu@email.com"
+                      readOnly
                     />
                   </div>
                   {errors.email && (
@@ -417,6 +507,7 @@ const Checkout: React.FC = () => {
                         errors.telefono ? 'border-red-300' : 'border-gray-300'
                       }`}
                       placeholder="+51 999 999 999"
+                      readOnly
                     />
                   </div>
                   {errors.telefono && (
