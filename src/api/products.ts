@@ -18,6 +18,7 @@ export interface SaveProductoPayload {
   imagen: string; // URL devuelta por /api/uploads/productos
   descripcion: string;
   categoria: string;
+  stock?: string;
   caracteristicas?: Record<string, string>; // 👈 NUEVO
 }
 

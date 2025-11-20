@@ -27,6 +27,7 @@ import MyOrdersPage from './pages/MyOrdersPage';
 import ProtectedRoute from './routes/ProtectedRoute';
 import AdminProducts from './pages/AdminProducts';
 import ChatWidget from './components/ChatWidget';
+import VerifyAccount from './pages/VerifyAccount';
 
 const AppContent: React.FC = () => {
   const { state, hideToast } = useCart();
@@ -45,6 +46,7 @@ const AppContent: React.FC = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/tracking/:orderId" element={<TrackingPage />} />
+            <Route path="/verificar" element={<VerifyAccount />} />
 
             {/* 🔒 Ruta protegida solo para ADMIN */}
             <Route

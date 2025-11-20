@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Mail, Lock, User, Phone, Eye, EyeOff, AlertCircle } from 'lucide-react';
+import { ArrowLeft, Mail, Lock, User, Phone, Eye, EyeOff, AlertCircle, CheckCircle } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 const Register: React.FC = () => {
   const { register, state, clearError } = useAuth();
   const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     nombre: '',
     email: '',
@@ -13,9 +14,11 @@ const Register: React.FC = () => {
     password: '',
     confirmPassword: '',
   });
+
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -77,18 +80,25 @@ const Register: React.FC = () => {
     }
 
     try {
+      // 👇 IMPORTANTE: nombres que el backend espera
       await register({
-        nombre: formData.nombre,
+        fullName: formData.nombre,
         email: formData.email,
-        telefono: formData.telefono,
+        phone: formData.telefono,
         password: formData.password,
       });
+
+      setSuccessMessage(
+        'Registro exitoso. Revisa tu correo y haz clic en el enlace de verificación para activar tu cuenta.'
+      );
     } catch (error) {
-      // El error se maneja en el contexto
+      // Error ya lo maneja el contexto (state.error)
     }
   };
 
-  React.useEffect(() => {
+  // Ya no redirigimos automáticamente, solo cuando el usuario inicie sesión
+  useEffect(() => {
+    // si en algún momento decides loguear después de verificar, aquí podrías navegar
     if (state.isAuthenticated) {
       navigate('/checkout');
     }
@@ -113,6 +123,16 @@ const Register: React.FC = () => {
         {/* Form */}
         <div className="bg-white rounded-lg shadow-lg p-8">
           <form className="space-y-6" onSubmit={handleSubmit}>
+            {/* Mensaje de éxito */}
+            {successMessage && (
+              <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-2">
+                <div className="flex items-center">
+                  <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
+                  <p className="text-sm text-green-700">{successMessage}</p>
+                </div>
+              </div>
+            )}
+
             {/* Error general */}
             {state.error && (
               <div className="bg-red-50 border border-red-200 rounded-lg p-4">
