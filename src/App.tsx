@@ -1,5 +1,4 @@
 // src/App.tsx
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Header from './components/Header';
@@ -27,6 +26,8 @@ import MyOrdersPage from './pages/MyOrdersPage';
 import ProtectedRoute from './routes/ProtectedRoute';
 import AdminProducts from './pages/AdminProducts';
 import ChatWidget from './components/ChatWidget';
+import AdminDashboard from './pages/AdminDashboard';
+
 
 const AppContent: React.FC = () => {
   const { state, hideToast } = useCart();
@@ -45,6 +46,7 @@ const AppContent: React.FC = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/tracking/:orderId" element={<TrackingPage />} />
+            
 
             {/* 🔒 Ruta protegida solo para ADMIN */}
             <Route
@@ -52,6 +54,13 @@ const AppContent: React.FC = () => {
               element={
                 <AdminRoute>
                   <AdminPanel />
+                </AdminRoute>
+              }
+            /><Route
+              path="/admin/dashboard"
+              element={
+                <AdminRoute>
+                  <AdminDashboard />
                 </AdminRoute>
               }
             />
