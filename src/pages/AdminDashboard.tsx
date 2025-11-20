@@ -1,4 +1,3 @@
-import React from 'react';
 import { DollarSign, ShoppingCart, Receipt } from 'lucide-react';
 import { KPICard } from '../components/adminDashboard/KPICard';
 import { CategoryRevenueChart } from '../components/adminDashboard/CategoryRevenueChart';
@@ -13,7 +12,7 @@ import {
   profitMarginData,
   productProfitability,
   costsVsRevenue,
-} from '../data/dashboardmockData';
+} from '../data/dashboardMockData';
 
 const AdminDashboard: React.FC = () => {
   return (
