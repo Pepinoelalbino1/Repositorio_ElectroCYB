@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { User, LogOut, ChevronDown, Settings, Package } from 'lucide-react';
+import { User, LogOut, ChevronDown, Settings, Package, LayoutDashboard } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 const UserIndicator: React.FC = () => {
@@ -86,7 +86,14 @@ const UserIndicator: React.FC = () => {
                     <Settings className="h-4 w-4 mr-2" />
                     Panel de Administración
                   </Link>
-
+                  <Link
+                    to="/admin/dashboard"
+                    onClick={() => setIsDropdownOpen(false)}
+                    className="w-full px-4 py-2 text-left text-sm text-blue-600 hover:bg-blue-50 transition-colors flex items-center"
+                  >
+                    <LayoutDashboard className="h-4 w-4 mr-2" />
+                    Dashboard
+                  </Link>
                   <Link
                     to="/admin/productos"
                     onClick={() => setIsDropdownOpen(false)}
