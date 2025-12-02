@@ -93,9 +93,9 @@ const AuthContext = createContext<{
   dispatch: React.Dispatch<AuthAction>;
   login: (email: string, password: string) => Promise<void>;
   register: (userData: {
-    nombre: string;
+    fullName: string;
     email: string;
-    telefono: string;
+    phone: string;
     password: string;
   }) => Promise<void>;
   logout: () => void;
@@ -169,32 +169,21 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     }
   };
 
+  // 👇 REGISTRO: ya NO loguea ni guarda token. Solo llama al backend.
   const register = async (userData: {
-    nombre: string;
+    fullName: string;
     email: string;
-    telefono: string;
+    phone: string;
     password: string;
   }) => {
-    dispatch({ type: 'LOGIN_START' });
+    dispatch({ type: 'SET_LOADING', payload: true });
+    dispatch({ type: 'CLEAR_ERROR' });
 
     try {
-      // Adaptar al backend: fullName, phone
-      const payload = {
-        fullName: userData.nombre,
-        email: userData.email,
-        phone: userData.telefono,
-        password: userData.password,
-      };
-
-      const res = await axiosInstance.post('/auth/register', payload);
-
-      const { token, user } = res.data;
-      const mappedUser = mapBackendUserToFrontend(user);
-
-      localStorage.setItem('authToken', token);
-      localStorage.setItem('user', JSON.stringify(mappedUser));
-
-      dispatch({ type: 'LOGIN_SUCCESS', payload: mappedUser });
+      await axiosInstance.post('/auth/register', userData);
+      // Éxito: no guardamos token ni usuario,
+      // el componente Register se encarga de mostrar el mensaje de "revisa tu correo".
+      dispatch({ type: 'SET_LOADING', payload: false });
     } catch (error: any) {
       console.error('Error al registrar usuario:', error);
       const msg =

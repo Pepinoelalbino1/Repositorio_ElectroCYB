@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   ArrowLeft,
-  CreditCard,
   Smartphone,
   AlertCircle,
   User,
@@ -13,6 +12,9 @@ import {
   Store,
   Truck,
   Lock,
+  Plus,
+  Minus,
+  Trash2,
 } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
@@ -21,10 +23,17 @@ import YapeModal from '../components/YapeModal';
 import { createOrder as createOrderApi } from '../api/orders';
 
 const Checkout: React.FC = () => {
-  const { state, getTotalPrice, clearCart } = useCart();
+  const {
+    state,
+    getTotalPrice,
+    clearCart,
+    updateQuantity,
+    removeItem,
+  } = useCart();
   const { state: authState } = useAuth();
 
-  const [paymentMethod, setPaymentMethod] = useState<'yape' | 'transferencia' | null>(null);
+  // ✅ Solo YAPE como método de pago
+  const [paymentMethod, setPaymentMethod] = useState<'yape' | null>('yape');
   const [deliveryMethod, setDeliveryMethod] = useState<'domicilio' | 'tienda' | 'envio' | null>(
     null
   );
@@ -49,8 +58,6 @@ const Checkout: React.FC = () => {
   // 🔹 Montos
   const cartSubtotal = getTotalPrice();
   const [shippingCost, setShippingCost] = useState<number>(0);
-
-  // Si no está autenticado
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -115,7 +122,7 @@ const Checkout: React.FC = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handlePaymentMethodSelect = (method: 'yape' | 'transferencia') => {
+  const handlePaymentMethodSelect = (method: 'yape') => {
     setPaymentMethod(method);
     if (errors.paymentMethod) {
       setErrors((prev) => ({
@@ -288,6 +295,23 @@ const Checkout: React.FC = () => {
 
   const totalWithShipping = cartSubtotal + shippingCost;
 
+  // 🔹 Manejo de cantidades y eliminación de productos
+  const handleIncreaseQuantity = (item: (typeof state.items)[number]) => {
+    updateQuantity(item.id, item.cantidad + 1);
+  };
+
+  const handleDecreaseQuantity = (item: (typeof state.items)[number]) => {
+    if (item.cantidad <= 1) {
+      removeItem(item.id);
+    } else {
+      updateQuantity(item.id, item.cantidad - 1);
+    }
+  };
+
+  const handleRemoveItem = (id: number) => {
+    removeItem(id);
+  };
+
   // Construir payload para el backend (alineado con PedidoService)
   const buildOrderPayload = () => {
     const itemsPayload = state.items.map((item) => {
@@ -296,8 +320,7 @@ const Checkout: React.FC = () => {
       return {
         productoId: item.id,
         nombre: item.nombre,
-        // 👇 estos campos son los que tu OrderItemPayload espera
-        precio: numericPrice.toFixed(2), // si en tu tipo es number, cámbialo a numericPrice
+        precio: numericPrice.toFixed(2),
         imagen: item.imagen,
         cantidad: item.cantidad,
       };
@@ -325,13 +348,10 @@ const Checkout: React.FC = () => {
         telefono: formData.telefono,
         direccion: direccionEnvio,
         referencia: formData.referencia,
-        // si tu tipo de cliente NO tiene distrito, puedes quitar esta línea:
-        // distrito: formData.distrito,
       },
       items: itemsPayload,
-      total: totalWithShipping, // si CreateOrderPayload no lo define, quítalo
-      metodoPago: paymentMethod!, // 'yape' | 'transferencia'
-      // notas: formData.comentarios, // solo si tu CreateOrderPayload lo tiene
+      total: totalWithShipping,
+      metodoPago: paymentMethod!, // solo 'yape'
     };
   };
 
@@ -350,36 +370,9 @@ const Checkout: React.FC = () => {
 
       clearCart();
       setShowYapeModal(false);
-      setLastOrderNumber(order.numeroPedido); // Guardamos el código del pedido
-
-      // No navegamos a /tracking: el tracking se verá luego de que el admin confirme
+      setLastOrderNumber(order.numeroPedido);
     } catch (error) {
       console.error('Error al crear pedido con YAPE:', error);
-      setOrderError('Hubo un problema al procesar tu pedido. Inténtalo nuevamente.');
-    } finally {
-      setIsProcessing(false);
-    }
-  };
-
-  // Pago por transferencia
-  const handleTransferenciaPayment = async () => {
-    if (!validateForm()) {
-      return;
-    }
-
-    setIsProcessing(true);
-    setOrderError(null);
-
-    try {
-      const payload = buildOrderPayload();
-      const order = await createOrderApi(payload);
-
-      clearCart();
-      setLastOrderNumber(order.numeroPedido);
-
-      // Tampoco navegamos a /tracking aquí
-    } catch (error) {
-      console.error('Error al crear pedido con transferencia:', error);
       setOrderError('Hubo un problema al procesar tu pedido. Inténtalo nuevamente.');
     } finally {
       setIsProcessing(false);
@@ -403,6 +396,7 @@ const Checkout: React.FC = () => {
       </div>
     );
   }
+
   if (!authState.isAuthenticated) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -483,7 +477,36 @@ const Checkout: React.FC = () => {
                       />
                       <div className="flex-1">
                         <h4 className="font-medium text-gray-800">{item.nombre}</h4>
-                        <p className="text-sm text-gray-600">Cantidad: {item.cantidad}</p>
+
+                        {/* Controles de cantidad + botón eliminar */}
+                        <div className="flex items-center space-x-2 mt-2">
+                          <button
+                            type="button"
+                            onClick={() => handleDecreaseQuantity(item)}
+                            className="w-8 h-8 flex items-center justify-center border border-gray-300 rounded-full hover:bg-gray-100"
+                          >
+                            <Minus className="h-4 w-4" />
+                          </button>
+                          <span className="min-w-[24px] text-center text-sm font-medium">
+                            {item.cantidad}
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() => handleIncreaseQuantity(item)}
+                            className="w-8 h-8 flex items-center justify-center border border-gray-300 rounded-full hover:bg-gray-100"
+                          >
+                            <Plus className="h-4 w-4" />
+                          </button>
+
+                          <button
+                            type="button"
+                            onClick={() => handleRemoveItem(item.id)}
+                            className="ml-3 flex items-center text-xs text-red-600 hover:text-red-800"
+                          >
+                            <Trash2 className="h-4 w-4 mr-1" />
+                            Quitar
+                          </button>
+                        </div>
                       </div>
                       <div className="text-right">
                         <p className="font-bold text-blue-600">
@@ -617,25 +640,6 @@ const Checkout: React.FC = () => {
                     </div>
                   </div>
                 </button>
-
-                <button
-                  onClick={() => handlePaymentMethodSelect('transferencia')}
-                  className={`w-full p-4 border-2 rounded-lg payment-button ${
-                    paymentMethod === 'transferencia'
-                      ? 'border-blue-500 bg-blue-50'
-                      : 'border-gray-200 hover:border-blue-300'
-                  }`}
-                >
-                  <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center">
-                      <CreditCard className="h-6 w-6 text-white" />
-                    </div>
-                    <div className="text-left">
-                      <h4 className="font-bold text-gray-800">Transferencia Bancaria</h4>
-                      <p className="text-sm text-gray-600">BCP, Interbank, BBVA</p>
-                    </div>
-                  </div>
-                </button>
               </div>
 
               {errors.paymentMethod && (
@@ -652,7 +656,6 @@ const Checkout: React.FC = () => {
                 </p>
               )}
 
-              {/* Mensaje de pedido registrado pendiente de confirmación */}
               {lastOrderNumber && (
                 <div className="mt-4 bg-yellow-50 border border-yellow-200 rounded-lg p-4 text-sm text-yellow-800">
                   <p className="font-semibold mb-1">¡Tu pedido ha sido registrado!</p>
@@ -936,20 +939,6 @@ const Checkout: React.FC = () => {
                   }`}
                 >
                   {isProcessing ? 'Procesando...' : 'Pagar con YAPE'}
-                </button>
-              )}
-
-              {paymentMethod === 'transferencia' && (
-                <button
-                  onClick={handleTransferenciaPayment}
-                  disabled={isProcessing}
-                  className={`w-full py-4 px-6 rounded-lg font-bold transition-colors ${
-                    isProcessing
-                      ? 'bg-gray-400 cursor-not-allowed'
-                      : 'bg-blue-600 hover:bg-blue-700 text-white'
-                  }`}
-                >
-                  {isProcessing ? 'Procesando...' : 'Confirmar Pedido'}
                 </button>
               )}
 

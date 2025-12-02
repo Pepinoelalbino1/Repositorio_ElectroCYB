@@ -30,6 +30,7 @@ const AdminProducts: React.FC = () => {
     imagen: '',
     descripcion: '',
     categoria: '',
+    stock: '',
   });
 
   // 👇 Estado local para manejar características como filas {key, value}
@@ -72,6 +73,7 @@ const AdminProducts: React.FC = () => {
       imagen: '',
       descripcion: '',
       categoria: '',
+      stock: '',
     });
     setCaracteristicas([]); // limpiar características
   };
@@ -84,6 +86,7 @@ const AdminProducts: React.FC = () => {
       imagen: p.imagen,
       descripcion: p.descripcion,
       categoria: p.categoria,
+      stock: p.stock != null ? p.stock.toString() : '',
     });
 
     // Cargar características existentes en filas {key, value}
@@ -153,6 +156,10 @@ const AdminProducts: React.FC = () => {
     }
     if (!formData.precio.trim()) {
       alert('El precio es obligatorio');
+      return;
+    }
+    if (formData.stock == null || formData.stock.toString().trim() === '') {
+      alert('El stock es obligatorio');
       return;
     }
 
@@ -265,6 +272,22 @@ const AdminProducts: React.FC = () => {
                     onChange={handleInputChange}
                     className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     placeholder="35.00"
+                  />
+                </div>
+
+                {/* Stock */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Stock (cantidad disponible)
+                  </label>
+                  <input
+                    type="number"
+                    name="stock"
+                    value={formData.stock ?? ''}
+                    onChange={handleInputChange}
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="0"
+                    min={0}
                   />
                 </div>
 
@@ -428,6 +451,7 @@ const AdminProducts: React.FC = () => {
                         <th className="px-3 py-2 text-left">Nombre</th>
                         <th className="px-3 py-2 text-left">Categoría</th>
                         <th className="px-3 py-2 text-left">Precio</th>
+                        <th className="px-3 py-2 text-left">Stock</th>
                         <th className="px-3 py-2 text-right">Acciones</th>
                       </tr>
                     </thead>
@@ -454,7 +478,21 @@ const AdminProducts: React.FC = () => {
                               {p.categoria}
                             </span>
                           </td>
-                          <td className="px-3 py-2">{formatPriceWithSymbol(p.precio)}</td>
+                          <td className="px-3 py-2">
+                            {formatPriceWithSymbol(p.precio)}
+                          </td>
+                          <td className="px-3 py-2">
+                            <span
+                              className={`text-xs font-semibold ${
+                                p.stock === 0
+                                  ? 'text-red-600'
+                                  : 'text-green-600'
+                              }`}
+                            >
+                              {p.stock ?? 0}{' '}
+                              {p.stock === 1 ? 'unidad' : 'unidades'}
+                            </span>
+                          </td>
                           <td className="px-3 py-2 text-right">
                             <button
                               onClick={() => handleEditProduct(p)}
