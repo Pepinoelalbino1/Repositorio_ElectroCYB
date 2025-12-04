@@ -101,7 +101,7 @@ const AuthContext = createContext<{
   logout: () => void;
   clearError: () => void;
 } | null>(null);
-
+//dd
 // Mapeo de user del backend -> frontend
 const mapBackendUserToFrontend = (backendUser: any): User => {
   return {
